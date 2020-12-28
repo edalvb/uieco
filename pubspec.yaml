@@ -45,6 +45,50 @@ flutter:
   # the material Icons class.
   uses-material-design: true
 
+  assets:
+    - assets/images/
+
+  fonts:
+    - family: Montserrat
+      fonts:
+        - asset: assets/fonts/Montserrat-Black.ttf
+        - asset: assets/fonts/Montserrat-BlackItalic.ttf
+        - asset: assets/fonts/Montserrat-Bold.ttf
+        - asset: assets/fonts/Montserrat-BoldItalic.ttf
+        - asset: assets/fonts/Montserrat-ExtraBold.ttf
+        - asset: assets/fonts/Montserrat-ExtraBoldItalic.ttf
+        - asset: assets/fonts/Montserrat-ExtraLight.ttf
+        - asset: assets/fonts/Montserrat-ExtraLightItalic.ttf
+        - asset: assets/fonts/Montserrat-Italic.ttf
+        - asset: assets/fonts/Montserrat-Light.ttf
+        - asset: assets/fonts/Montserrat-LightItalic.ttf
+        - asset: assets/fonts/Montserrat-Medium.ttf
+        - asset: assets/fonts/Montserrat-MediumItalic.ttf
+        - asset: assets/fonts/Montserrat-Regular.ttf
+        - asset: assets/fonts/Montserrat-SemiBold.ttf
+        - asset: assets/fonts/Montserrat-SemiBoldItalic.ttf
+        - asset: assets/fonts/Montserrat-Thin.ttf
+        - asset: assets/fonts/Montserrat-ThinItalic.ttf
+        - asset: assets/fonts/MontserratAlternates-Black.ttf
+        - asset: assets/fonts/MontserratAlternates-BlackItalic.ttf
+        - asset: assets/fonts/MontserratAlternates-Bold.ttf
+        - asset: assets/fonts/MontserratAlternates-BoldItalic.ttf
+        - asset: assets/fonts/MontserratAlternates-ExtraBold.ttf
+        - asset: assets/fonts/MontserratAlternates-ExtraBoldItalic.ttf
+        - asset: assets/fonts/MontserratAlternates-ExtraLight.ttf
+        - asset: assets/fonts/MontserratAlternates-ExtraLightItalic.ttf
+        - asset: assets/fonts/MontserratAlternates-Italic.ttf
+        - asset: assets/fonts/MontserratAlternates-Light.ttf
+        - asset: assets/fonts/MontserratAlternates-LightItalic.ttf
+        - asset: assets/fonts/MontserratAlternates-Medium.ttf
+        - asset: assets/fonts/MontserratAlternates-MediumItalic.ttf
+        - asset: assets/fonts/MontserratAlternates-Regular.ttf
+        - asset: assets/fonts/MontserratAlternates-SemiBold.ttf
+        - asset: assets/fonts/MontserratAlternates-SemiBoldItalic.ttf
+        - asset: assets/fonts/MontserratAlternates-Thin.ttf
+        - asset: assets/fonts/MontserratAlternates-ThinItalic.ttf
+
+
   # To add assets to your application, add an assets section, like this:
   # assets:
   #   - images/a_dot_burr.jpeg
