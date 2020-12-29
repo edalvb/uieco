@@ -88,6 +88,12 @@ class _PaymentMethodPageState extends State<PaymentMethodPage> {
           ],
         ),
       ),
+      floatingActionButton: RaisedButton(
+        child: Text("Siguiente"),
+        onPressed: () => _showDetails(context),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(25)),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
   }
 
@@ -95,5 +101,9 @@ class _PaymentMethodPageState extends State<PaymentMethodPage> {
     setState(() {
       this.paymentSelected = value;
     });
+  }
+
+  _showDetails(BuildContext context) {
+    Navigator.pushNamed(context, "/details");
   }
 }
