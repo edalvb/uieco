@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:uieco/ui/util/util.dart' as util;
 
 class SucessfulPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    var mySize = util.mySize(context);
+
     print(ModalRoute.of(context).settings.arguments);
     return Scaffold(
       body: Column(
@@ -12,25 +15,25 @@ class SucessfulPage extends StatelessWidget {
             decoration: BoxDecoration(
                 color: Color(0xFF34495E),
                 borderRadius:
-                    BorderRadius.vertical(bottom: Radius.circular(60))),
+                    BorderRadius.vertical(bottom: Radius.circular(mySize(60)))),
             child: Center(
               child: Image.asset(
                 "assets/images/mujer.png",
-                height: 200,
+                height: mySize(200),
               ),
             ),
           ),
-          SizedBox(height: 30),
+          SizedBox(height: mySize(30)),
           Image.asset(
             "assets/images/done.png",
-            height: 60,
+            height: mySize(60),
           ),
-          SizedBox(height: 30),
+          SizedBox(height: mySize(30)),
           Text(
             "Gracias por su compra",
             style: TextStyle(
               color: Color(0xFF34495E),
-              fontSize: 20,
+              fontSize: mySize(20),
               fontWeight: FontWeight.bold,
             ),
           ),
@@ -43,8 +46,7 @@ class SucessfulPage extends StatelessWidget {
       ),
       floatingActionButton: RaisedButton(
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(50)
-        ),
+            borderRadius: BorderRadius.circular(mySize(50))),
         child: Text("Continuar comprando"),
         onPressed: () => nothing(context),
       ),
@@ -52,9 +54,7 @@ class SucessfulPage extends StatelessWidget {
     );
   }
 
-  nothing(BuildContext context) {
-
-  }
+  nothing(BuildContext context) {}
 }
 
 class MyArguments {

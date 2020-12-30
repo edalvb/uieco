@@ -12,6 +12,8 @@ class _PaymentMethodPageState extends State<PaymentMethodPage> {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
