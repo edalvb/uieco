@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:uieco/ui/pages/payment_details.dart';
 import 'package:uieco/ui/pages/payment_method.dart';
+import 'package:uieco/ui/pages/successful_page.dart';
 
 void main() => runApp(MyApp());
 
@@ -29,7 +30,7 @@ class MyApp extends StatelessWidget {
       routes: {
         '/': (context) => PaymentMethodPage(),
         '/details': (context) => PaymentDetails(),
-        '/sucessful': (context) => PaymentDetails(),
+        '/sucessful': (context) => SucessfulPage(),
       },
     );
   }

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:masked_text_input_formatter/masked_text_input_formatter.dart';
+import 'package:uieco/ui/pages/successful_page.dart';
 
 class PaymentDetails extends StatefulWidget {
   @override
@@ -216,8 +217,21 @@ class _PaymentDetailsState extends State<PaymentDetails> {
   _showSucessful(BuildContext context) {
     if (formKey.currentState.validate()) {
       formKey.currentState.save();
+
+      MyArguments arguments = MyArguments(
+        name: this.name,
+        cardNumber: this.cardNumber,
+        expiryDate: this.expiryDate,
+        cvvCode: this.cvvCode,
+        saveCard: this._saveCard,
+      );
+
       Navigator.pushNamedAndRemoveUntil(
-          context, "/sucessful", ModalRoute.withName("/sucessful"));
+        context,
+        "/sucessful",
+        ModalRoute.withName("/sucessful"),
+        arguments: arguments,
+      );
     }
   }
 }
