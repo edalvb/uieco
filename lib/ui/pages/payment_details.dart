@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:masked_text_input_formatter/masked_text_input_formatter.dart';
 
@@ -69,39 +70,109 @@ class _PaymentDetailsState extends State<PaymentDetails> {
               ),
               SizedBox(height: 20),
               TextFormField(
-                style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 12,
-                ),
+                style: TextStyle(color: Colors.black, fontSize: 12),
                 decoration: CardInputDecoration("Nombre"),
+                textInputAction: TextInputAction.next,
+                onEditingComplete: () => _requestFocus(this.cardNumberFocus),
                 validator: (value) {
                   if (value.isEmpty) {
                     return "Llene este campo";
                   }
                 },
                 onSaved: (value) => name = value,
-                onEditingComplete: () => _requestFocus(this.cardNumberFocus),
               ),
+              SizedBox(height: 20),
               TextFormField(
-                style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 12,
-                ),
+                style: TextStyle(color: Colors.black, fontSize: 12),
                 decoration: CardInputDecoration("Número de tarjeta"),
+                inputFormatters: [
+                  MaskedTextInputFormatter(
+                      mask: "xxxx-xxxx-xxxx-xxxx", separator: "-")
+                ],
+                keyboardType: TextInputType.number,
+                textInputAction: TextInputAction.next,
+                focusNode: cardNumberFocus,
+                onEditingComplete: () => _requestFocus(this.expiryDateFocus),
                 validator: (value) {
                   if (value.isEmpty) {
                     return "Llene este campo";
                   }
                 },
                 onSaved: (value) => cardNumber = value,
-                inputFormatters: [
-                  MaskedTextInputFormatter(
-                      mask: "xxxx-xxxx-xxxx-xxxx", separator: "-")
-                ],
-                keyboardType: TextInputType.number,
-                focusNode: cardNumberFocus,
-                textInputAction: TextInputAction.next,
               ),
+              SizedBox(height: 20),
+              Row(
+                children: [
+                  Expanded(
+                    flex: 3,
+                    child: TextFormField(
+                      style: TextStyle(color: Colors.black, fontSize: 12),
+                      decoration: CardInputDecoration("Fecha de expiracion"),
+                      keyboardType: TextInputType.datetime,
+                      inputFormatters: [
+                        MaskedTextInputFormatter(mask: "MM/YY", separator: "/")
+                      ],
+                      focusNode: expiryDateFocus,
+                      onEditingComplete: () => _requestFocus(this.cvvCodeFocus),
+                      validator: (value) {
+                        if (value.isEmpty) {
+                          return "Llene este campo";
+                        }
+                      },
+                      onSaved: (value) => expiryDate = value,
+                    ),
+                  ),
+                  Expanded(child: SizedBox()),
+                  Expanded(
+                    flex: 2,
+                    child: TextFormField(
+                      style: TextStyle(color: Colors.black, fontSize: 12),
+                      decoration: CardInputDecoration("CVV"),
+                      keyboardType: TextInputType.number,
+                      inputFormatters: [LengthLimitingTextInputFormatter(3)],
+                      focusNode: cvvCodeFocus,
+                      validator: (value) {
+                        if (value.isEmpty) {
+                          return "Llene este campo";
+                        }
+                      },
+                      onSaved: (value) => cvvCode = value,
+                    ),
+                  ),
+                ],
+              ),
+              SizedBox(height: 10),
+              InkWell(
+                onTap: () {
+                  setState(() {
+                    this._saveCard = !this._saveCard;
+                  });
+                },
+                child: Row(
+                  children: <Widget>[
+                    Checkbox(
+                      value: this._saveCard,
+                      onChanged: (value) {
+                        setState(() {
+                          this._saveCard = value;
+                        });
+                      },
+                    ),
+                    Expanded(
+                      child:
+                          Text("¿Guardar esta tarjeta para facturas compras?"),
+                    )
+                  ],
+                ),
+              ),
+              SizedBox(height: 10),
+              RaisedButton(
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(50)),
+                child: Text("Confirmar pago"),
+                onPressed: () => _showSucessful(context),
+              ),
+              SizedBox(height: 10),
             ],
           ),
         ),
@@ -141,6 +212,14 @@ class _PaymentDetailsState extends State<PaymentDetails> {
 
   _requestFocus(FocusNode focusNode) =>
       FocusScope.of(context).requestFocus(focusNode);
+
+  _showSucessful(BuildContext context) {
+    if (formKey.currentState.validate()) {
+      formKey.currentState.save();
+      Navigator.pushNamedAndRemoveUntil(
+          context, "/sucessful", ModalRoute.withName("/sucessful"));
+    }
+  }
 }
 
 class CardInputDecoration extends InputDecoration {

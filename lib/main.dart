@@ -29,6 +29,7 @@ class MyApp extends StatelessWidget {
       routes: {
         '/': (context) => PaymentMethodPage(),
         '/details': (context) => PaymentDetails(),
+        '/sucessful': (context) => PaymentDetails(),
       },
     );
   }
